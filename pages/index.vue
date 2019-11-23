@@ -43,8 +43,11 @@ export default {
 		color: white;
 		h1 {
 			font-size: 5vw;
-			opacity: 1;
-			color: #111;
+			a {
+				color: #efefef;
+				text-decoration: none;
+				border-bottom: 8px solid #efefef;
+			}
 		}
 	}
 

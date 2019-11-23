@@ -4,6 +4,7 @@
 			<div class="circle-content">
 				<h1>Early bird</h1>
 				<h1>299,- kr</h1>
+				<p @click="goCheckout">Til checkout</p>
 			</div>
 		</div>
 		<Back/>
@@ -14,11 +15,35 @@
 import Back from '~/components/Back.vue'
 
 export default {
+	head: {
+    script: [
+      { src: 'https://js.stripe.com/v3/' }
+    ]
+  },
   components: {
     Back
   },
 	data() {
 		return {
+		}
+	},
+	methods: {
+		goCheckout() {
+			var stripe = Stripe('pk_test_sIbuppzttNc2FPdCHcEUUdyG');
+
+			stripe.redirectToCheckout({
+				items: [
+					// Replace with the ID of your SKU
+					{sku: 'sku_GEEOtn0fRdwg48', quantity: 1}
+				],
+				successUrl: 'https://example.com/success',
+				cancelUrl: 'https://example.com/cancel',
+				customerEmail: 'customer@example.com',
+			}).then(function (result) {
+  			// If `redirectToCheckout` fails due to a browser or network
+  			// error, display the localized error message to your customer
+  			// using `result.error.message`.
+			});
 		}
 	}
 }
