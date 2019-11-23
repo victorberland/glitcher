@@ -25,7 +25,8 @@ export default {
 		return {
 			frontMessage: '',
 			frontMessageOrig: '14. - 16. februar',
-			frontMessageHover: 'ka vente du på?',
+			// frontMessageHover: 'ka vente du på?',
+			frontMessageHover: 'gamers rise up.',
 			cursorScale1: false,
 			cursorScale2: false,
 			cursorCenter: false,
