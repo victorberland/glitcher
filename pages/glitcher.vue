@@ -13,6 +13,9 @@
 			<div class="content" v-show="contentReady">
 				<h1>Gamers rise up.</h1>
 				<p>Lorem ipsum dolor amet hella hexagon prism whatever beard echo park retro tousled. Hoodie pabst cardigan irony four dollar toast adaptogen. Squid hashtag taxidermy kombucha quinoa single-origin coffee cardigan lyft. Shabby chic echo park craft beer prism marfa franzen heirloom hella knausgaard selfies portland trust fund hot chicken. Wayfarers pour-over bicycle rights af etsy cray try-hard roof party 8-bit, enamel pin franzen. Irony +1 lyft hot chicken kombucha vexillologist disrupt pok pok keffiyeh master cleanse artisan. Tacos health goth literally cred, ennui lyft semiotics fingerstache tofu sriracha thundercats pabst.</p>
+				<img src="https://images.unsplash.com/photo-1544652478-6653e09f18a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80"/>
+				<p>Lorem ipsum dolor amet hella hexagon prism whatever beard echo park retro tousled. Hoodie pabst cardigan irony four dollar toast adaptogen. Squid hashtag taxidermy kombucha quinoa single-origin coffee cardigan lyft. Shabby chic echo park craft beer prism marfa franzen heirloom hella knausgaard selfies portland trust fund hot chicken. Wayfarers pour-over bicycle rights af etsy cray try-hard roof party 8-bit, enamel pin franzen. Irony +1 lyft hot chicken kombucha vexillologist disrupt pok pok keffiyeh master cleanse artisan. Tacos health goth literally cred, ennui lyft semiotics fingerstache tofu sriracha thundercats pabst.</p>
+				<img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"/>
 			</div>
 		</transition>
 
@@ -56,6 +59,7 @@ export default {
 		color: white;
 		padding: 70px;
 		mix-blend-mode: color-burn;
+		position: fixed;
 		.year {
 			position: absolute;
 			bottom: 50px;
@@ -74,7 +78,7 @@ export default {
 		width: 50%;
 		h1 {
 			font-size: 62px;
-			margin: 40px 0;
+			margin: 50px 0;
 			color: white;
 			mix-blend-mode: difference;
 		}
@@ -82,6 +86,11 @@ export default {
 			max-width: 800px;
 			line-height: 200%;
 			font-size: 16px;
+		}
+		img {
+			width: 100%;
+			height: auto;
+			margin: 100px 0;
 		}
 	}
 }
