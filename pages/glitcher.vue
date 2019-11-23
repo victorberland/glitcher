@@ -4,7 +4,7 @@
 		<div class="black-col" :class="{ 'loaded-black': blackColReady }">
 				<div class="year">
 					<h1>2K</h1>
-					<h1>19</h1>
+					<h1>20</h1>
 				</div>
 			</div>
 
