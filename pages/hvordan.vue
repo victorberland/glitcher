@@ -4,19 +4,26 @@
 
 			<transition name="fade">
 				<div class="circle-content" v-show="contentReady">
-					<h1>Early bird</h1>
-					<h1>299,- kr</h1>
-					<form>
-						Antall
-						<input type="number" v-model="numberParticipants"/>
-						Alder
-						<input type="number" v-model="userAge"/>
-						<div class="underage-consent" v-if="!overAge">
-							For å delta på Glitcher LAN må foreldrene dine samtykke til at du drar. Er dette tilfellet?
-							<input type="checkbox" v-model="parentsConsent"/>
-						</div>
-					</form>
-					<p @click="goCheckout" v-if="overAge || parentsConsent">Til checkout</p>
+					<h1>Ka vente du på?</h1>
+					<div class="inner-content">
+						<form>
+							<label>Hvor gammel er du?</label><br/>
+							<input type="number" v-model="userAge"/>
+
+							<div class="underage-consent" v-if="!overAge">
+								<br/>
+								Mine foresatte samtykker til at jeg får dra på Glitcher LAN
+								<input type="checkbox" v-model="parentsConsent"/>
+							</div>
+
+							<br/>
+							<br/>
+							<label>Hvor mange skal du melde på?</label><br/>
+							<input type="number" v-model="numberParticipants"/>
+		
+						</form>
+						<button type="button" @click="goCheckout" v-if="overAge || parentsConsent">Fortsett</button>
+					</div>
 				</div>
 			</transition>
 		</div>
@@ -86,6 +93,9 @@ export default {
 </script>
 
 <style lang="scss">
+$purple1: #3F2E55;
+$purple2: #8F4C92;
+
 .meld {
 	.big-circle {
 		width: 100vh!important;
@@ -108,11 +118,45 @@ export default {
 			left: 50%;
 			width: 100%;
 			transform: translate(-50%,-50%);
-			text-align: center;
+			.inner-content {
+				min-width: 400px;
+				width: 45vh;
+				margin-left: auto;
+				margin-right: auto;
+				margin-top: 60px;
+				.underage-consent {
+					color: #333;
+				}
+				label {
+					color: $purple2;
+					font-size: 18px;
+					font-weight: bold;
+				}
+				input[type="text"], input[type="number"] {
+					width: 100%;
+					outline: none;
+					border: 8px solid $purple1;
+					padding: 10px 20px;
+					font-size: 16px;
+					margin: 10px 0;
+				}
+				button {
+					margin-top: 40px;
+					font-size: 16px;
+					outline: none;
+					border: 8px solid $purple1;
+					background: $purple1;
+					color: white;
+					padding: 10px 20px;
+					width: 100%;
+					cursor: pointer;
+				}
+			}
 		}
 		h1 {
-			font-size: 6em;
-			color: #000;
+			font-size: 55px;
+			color: $purple1;
+			text-align: center;
 		}
 	}
 }
