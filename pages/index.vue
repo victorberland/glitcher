@@ -12,21 +12,15 @@
 		<transition name="fade">
 			<header v-show="contentShow">
 				<h2>Glitcher</h2>
-				<p @mouseenter="cursorScale1 = true" @mouseleave="cursorScale1 = false">Hva er Glitcher?</p>
+				<p @mouseenter="cursorScale1 = true" @mouseleave="cursorScale1 = false" @click="clickedInfo">Hva er Glitcher?</p>
 			</header>
 		</transition>
 
-		<Back/>
   </div>
 </template>
 
 <script>
-import Back from '~/components/Back.vue'
-
 export default {
-  components: {
-    Back
-  },
 	data() {
 		return {
 			frontMessage: '',
@@ -66,6 +60,14 @@ export default {
 			setTimeout(function() {
 				that.$router.push('/hvordan')
 			}, 1000)
+		},
+		clickedInfo() {
+			this.contentShow = false
+			var that = this
+
+			setTimeout(function() {
+				that.$router.push('/glitcher')
+			}, 1000)
 		}
 	}
 }
@@ -74,7 +76,7 @@ export default {
 <style lang="scss">
 .front {
 	.cursor-circle {
-		position: absolute;
+		position: fixed;
 		left: 0;
 		top: 0;
 		width: 30px;
@@ -83,17 +85,15 @@ export default {
 		border-radius: 100%;
 		transition: 0.2s ease;
 		transform: translate(-50,-50%);
-		mix-blend-mode: normal;
+		mix-blend-mode: difference;
 		z-index: 10;
 		pointer-events: none;
 	}
 	.cursor-scale-1 {
 		transform: translate(-50%,-50%) scale(3);
-		mix-blend-mode: difference;
 	}
 	.cursor-scale-2 {
 		transform: translate(-50%,-50%) scale(4);
-		mix-blend-mode: difference;
 	}
 	.cursor-center {
 		top: 50%!important;
@@ -101,12 +101,13 @@ export default {
 		width: 200px;
 		height: 200px;
 		transform: translate(-50%,-50%) scale(1);
+		mix-blend-mode: normal;
 	}
 
 
 	header {
 		color: white;
-		position: absolute;
+		position: fixed;
 		bottom: 10px;
 		padding: 50px;
 		width: 100%;
@@ -119,6 +120,8 @@ export default {
 			right: 0;
 			transform: rotate(-90deg) translate(50%,0);
 			font-size: 20px;
+			color: white;
+			cursor: pointer;
 		}
 	}
 	.front-content {
@@ -132,6 +135,24 @@ export default {
 			color: #efefef;
 			border-bottom: 12px solid #efefef;
 			padding-bottom: 10px;
+			cursor: pointer;
+		}
+	}
+
+
+	.container {
+		position: absolute;
+		top: 100vh;
+		background: white;
+		padding: 80px;
+		right: 70px;
+		mix-blend-mode: screen;
+		width: 1100px;
+		.content {
+			float: right;
+		}
+		h1 {
+			font-size: 150px;
 		}
 	}
 

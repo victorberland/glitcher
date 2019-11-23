@@ -1,8 +1,20 @@
 <template>
   <div>
     <nuxt />
+		<Back/>
   </div>
 </template>
+
+<script>
+import Back from '~/components/Back.vue'
+
+ export default {
+		components: {
+   		Back
+  	}
+ }
+</script>
+
 
 <style>
 html {

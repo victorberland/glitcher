@@ -1,28 +1,29 @@
 <template>
   <div class="meld">
 		<div class="circle" :class="{ 'big-circle': bigCircle }">
-			<div class="circle-content">
-				<h1>Early bird</h1>
-				<h1>299,- kr</h1>
-				<form>
-					Antall
-					<input type="number" v-model="numberParticipants"/>
-					Alder
-					<input type="number" v-model="userAge"/>
-					<div class="underage-consent" v-if="!overAge">
-						For å delta på Glitcher LAN må foreldrene dine samtykke til at du drar. Er dette tilfellet?
-						<input type="checkbox" v-model="parentsConsent"/>
-					</div>
-				</form>
-				<p @click="goCheckout" v-if="overAge || parentsConsent">Til checkout</p>
-			</div>
+
+			<transition name="fade">
+				<div class="circle-content" v-show="contentReady">
+					<h1>Early bird</h1>
+					<h1>299,- kr</h1>
+					<form>
+						Antall
+						<input type="number" v-model="numberParticipants"/>
+						Alder
+						<input type="number" v-model="userAge"/>
+						<div class="underage-consent" v-if="!overAge">
+							For å delta på Glitcher LAN må foreldrene dine samtykke til at du drar. Er dette tilfellet?
+							<input type="checkbox" v-model="parentsConsent"/>
+						</div>
+					</form>
+					<p @click="goCheckout" v-if="overAge || parentsConsent">Til checkout</p>
+				</div>
+			</transition>
 		</div>
-		<Back/>
   </div>
 </template>
 
 <script>
-import Back from '~/components/Back.vue'
 
 export default {
 	head: {
@@ -30,12 +31,10 @@ export default {
       { src: 'https://js.stripe.com/v3/' }
     ]
   },
-  components: {
-    Back
-  },
 	data() {
 		return {
 			bigCircle: false,
+			contentReady: false,
 			userAge: '',
 			parentsConsent: false,
 			numberParticipants: 1
@@ -79,6 +78,9 @@ export default {
 		setTimeout(function() {
 			that.bigCircle = true
 		}, 300);
+		setTimeout(function() {
+			that.contentReady = true
+		}, 1300);
 	}
 }
 </script>
@@ -101,7 +103,6 @@ export default {
 		top: 50%;
 		transform: translate(-50%,-50%);
 		.circle-content {
-			display: none;
 			position: absolute;
 			top: 50%;
 			left: 50%;
@@ -114,5 +115,13 @@ export default {
 			color: #000;
 		}
 	}
+}
+
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
