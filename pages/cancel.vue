@@ -2,10 +2,8 @@
   <div class="cancel">
 
     <div class="main-cancel">
-      <div class="head"><h1>Error!</h1></div>
-      <div class="body">
-        <h1>Det har skjedd en feil, eller så har du kanselert :-(</h1>
-      </div>
+      <div class="head"><h1>{{ errorWindowHead }}</h1></div>
+      <div class="body"><h1>{{ errorWindowText }}</h1></div>
     </div>
 
   </div>
@@ -15,7 +13,8 @@
 export default {
 	data() {
 		return {
-
+      errorWindowHead: "Error!",
+      errorWindowText: "Det har skjedd en feil, eller så har du kanselert :-("
 		}
 	},
 	mounted() {
