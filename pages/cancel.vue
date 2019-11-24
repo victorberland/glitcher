@@ -28,15 +28,11 @@ $windowColor: white;//#F6EACD;
 $windowBorderColor: black;
 $windowBorder: 5px;
 
-.cancel {
-  width: 100vw;
-  height: 100vh;
-  text-align: center;
-}
 
 .main-cancel {
   width: 50vw;
   height: 20vw;
+	text-align: center;
 
   background: $windowColor;
   border: $windowBorder solid $windowBorderColor;
