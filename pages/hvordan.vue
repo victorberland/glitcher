@@ -4,6 +4,7 @@
 
 			<transition name="fade">
 				<div class="circle-content" v-show="contentReady">
+
 					<h1>Ka vente<br/>du på?</h1>
 					<div class="inner-content">
 						<form>
@@ -20,10 +21,11 @@
 							<br/>
 							<label>Hvor mange skal du melde på?</label><br/>
 							<input type="number" v-model="numberParticipants"/>
-		
+
 						</form>
 						<button type="button" @click="goCheckout" v-if="overAge || parentsConsent">Fortsett</button>
 					</div>
+
 				</div>
 			</transition>
 		</div>

@@ -85,7 +85,7 @@ export default {
 		background: white;
 		border-radius: 100%;
 		transition: 0.2s ease;
-		transform: translate(-50,-50%);
+		transform: translate(-50%,-50%);
 		mix-blend-mode: difference;
 		z-index: 10;
 		pointer-events: none;

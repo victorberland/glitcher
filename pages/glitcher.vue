@@ -61,6 +61,7 @@ export default {
 		letter-spacing: 0.1em;
 		line-height: 120%;
 		text-indent: 9vw;
+    z-index: 1;
 	}
 	.loaded-black {
 		transform: translateX(0)!important;
