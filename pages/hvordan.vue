@@ -137,7 +137,8 @@ $purple2: #8F4C92;
 				input[type="text"], input[type="number"] {
 					width: 100%;
 					outline: none;
-					border: 8px solid $purple1;
+          border: 0px;
+					border-bottom: 8px solid $purple1;
 					padding: 10px 20px;
 					font-size: 16px;
 					margin: 10px 0;
