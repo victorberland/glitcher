@@ -35,6 +35,7 @@ $windowBorder: 5px;
 	text-align: center;
 
   background: $windowColor;
+  mix-blend-mode: multiply;
   border: $windowBorder solid $windowBorderColor;
   border-radius: 15px;
 
@@ -47,7 +48,6 @@ $windowBorder: 5px;
     width: 100%;
     height: 20%;
 
-    background: $windowColor;
     border: 0px;
     border-bottom: $windowBorder solid $windowBorderColor;
     border-radius: 5px 5px 0px 0px;
