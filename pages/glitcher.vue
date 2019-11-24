@@ -1,9 +1,10 @@
 <template>
   <div class="glitcher">
 
+		<h1 class="big-text">"gamers<br/>rise up"</h1>
 		<div class="black-col" :class="{ 'loaded-black': blackColReady }">
 				<div class="year">
-					<h1>2K</h1>
+					<!-- <h1>2K</h1> -->
 					<h1>20</h1>
 				</div>
 			</div>
@@ -11,7 +12,6 @@
 
 		<transition name="fade">
 			<div class="content" v-show="contentReady">
-				<h1>Gamers rise up.</h1>
 				<p>Lorem ipsum dolor amet hella hexagon prism whatever beard echo park retro tousled. Hoodie pabst cardigan irony four dollar toast adaptogen. Squid hashtag taxidermy kombucha quinoa single-origin coffee cardigan lyft. Shabby chic echo park craft beer prism marfa franzen heirloom hella knausgaard selfies portland trust fund hot chicken. Wayfarers pour-over bicycle rights af etsy cray try-hard roof party 8-bit, enamel pin franzen. Irony +1 lyft hot chicken kombucha vexillologist disrupt pok pok keffiyeh master cleanse artisan. Tacos health goth literally cred, ennui lyft semiotics fingerstache tofu sriracha thundercats pabst.</p>
 				<img src="https://images.unsplash.com/photo-1544652478-6653e09f18a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80"/>
 				<p>Lorem ipsum dolor amet hella hexagon prism whatever beard echo park retro tousled. Hoodie pabst cardigan irony four dollar toast adaptogen. Squid hashtag taxidermy kombucha quinoa single-origin coffee cardigan lyft. Shabby chic echo park craft beer prism marfa franzen heirloom hella knausgaard selfies portland trust fund hot chicken. Wayfarers pour-over bicycle rights af etsy cray try-hard roof party 8-bit, enamel pin franzen. Irony +1 lyft hot chicken kombucha vexillologist disrupt pok pok keffiyeh master cleanse artisan. Tacos health goth literally cred, ennui lyft semiotics fingerstache tofu sriracha thundercats pabst.</p>
@@ -47,6 +47,18 @@ export default {
 
 <style lang="scss">
 .glitcher {
+	.big-text {
+		position: absolute;
+		top: 10vh;
+		left: 10%;
+		font-size: 8vw;
+		text-shadow: -2px 2px 0 #fff, 2px 2px 0 #fff, 2px -2px 0 #fff, -2px -2px 0 #fff;
+		mix-blend-mode: lighten;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		line-height: 120%;
+		text-indent: 9vw;
+	}
 	.loaded-black {
 		transform: translateX(0)!important;
 	}
@@ -72,10 +84,10 @@ export default {
 	}
 	.content {
 		position: absolute;
-		left: 35%;
+		left: 47%;
 		color: white;
-		top: 25vh;
-		width: 50%;
+		top: 55vh;
+		width: 45%;
 		h1 {
 			font-size: 62px;
 			margin: 50px 0;
@@ -83,9 +95,10 @@ export default {
 			mix-blend-mode: difference;
 		}
 		p {
-			max-width: 800px;
-			line-height: 200%;
+			max-width: 670px;
+			line-height: 220%;
 			font-size: 16px;
+			float: right;
 		}
 		img {
 			width: 100%;
