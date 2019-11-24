@@ -4,7 +4,7 @@
 
 			<transition name="fade">
 				<div class="circle-content" v-show="contentReady">
-					<h1>Ka vente du på?</h1>
+					<h1>Ka vente<br/>du på?</h1>
 					<div class="inner-content">
 						<form>
 							<label>Hvor gammel er du?</label><br/>
@@ -154,9 +154,13 @@ $purple2: #8F4C92;
 			}
 		}
 		h1 {
-			font-size: 55px;
-			color: $purple1;
+			font-size: 9vh;
+			color: white;
 			text-align: center;
+			text-shadow: -2px 2px 0 #000, 2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+			line-height: 120%;
 		}
 	}
 }

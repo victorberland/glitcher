@@ -2,10 +2,12 @@
   <div class="glitcher">
 
 		<!-- <h1 class="big-text">"gamers<br/>rise up"</h1> -->
-		<h1 class="big-text">"gamer<br/>society"</h1>
+		<transition name="fade">
+			<h1 class="big-text" v-show="blackColReady">"gamer<br/>society"</h1>
+		</transition>
 		<div class="black-col" :class="{ 'loaded-black': blackColReady }">
 				<div class="year">
-					<!-- <h1>2K</h1> -->
+					<h1>2K</h1>
 					<h1>20</h1>
 				</div>
 			</div>
