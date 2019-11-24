@@ -24,7 +24,7 @@ export default {
 	data() {
 		return {
 			frontMessage: '',
-			frontMessageOrig: '14. - 16. februar',
+			frontMessageOrig: '14 - 16 februar',
 			// frontMessageHover: 'ka vente du på?',
 			frontMessageHover: 'gamers rise up.',
 			cursorScale1: false,
@@ -130,13 +130,20 @@ export default {
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%,-50%);
-		color: white;
+		color: black;
+		mix-blend-mode: difference;
+		text-transform: uppercase;
+		white-space: nowrap;
+		border-bottom: 1px solid white;
 		h1 {
-			font-size: 5vw;
-			color: #efefef;
-			border-bottom: 12px solid #efefef;
+			font-size: 5.5vw;
+			border-bottom: 1px solid white;
+			letter-spacing: 0.1em;
 			padding-bottom: 10px;
 			cursor: pointer;
+			text-shadow: -2px 2px 0 #fff, 2px 2px 0 #fff, 2px -2px 0 #fff, -2px -2px 0 #fff;
+			//text-shadow: -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;
+			margin-bottom: 10px;
 		}
 	}
 
