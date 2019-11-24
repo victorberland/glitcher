@@ -102,6 +102,7 @@ $purple2: #8F4C92;
 	.big-circle {
 		width: 100vh!important;
 		height: 100vh!important;
+    //background: black!important;
 	}
 	.circle {
 		background: white;
