@@ -71,8 +71,8 @@ export default {
 					// Replace with the ID of your SKU
 					{sku: 'sku_GEEOtn0fRdwg48', quantity: Number(this.numberParticipants)}
 				],
-				successUrl: 'https://example.com/success',
-				cancelUrl: 'https://example.com/cancel',
+				successUrl: 'https://glitcher.space/success',
+				cancelUrl: 'https://glitcher.space/cancel',
 				// customerEmail: 'customer@example.com',
 			}).then(function (result) {
   			// If `redirectToCheckout` fails due to a browser or network
