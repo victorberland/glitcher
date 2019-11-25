@@ -11,7 +11,7 @@
 
 		<transition name="fade">
 			<header v-show="contentShow">
-				<h2>Glitcher</h2>
+				<img src="/logo-1.svg" class="logo"/>
 				<p @mouseenter="cursorScale1 = true" @mouseleave="cursorScale1 = false" @click="clickedInfo">Hva er Glitcher?</p>
 			</header>
 		</transition>
@@ -112,6 +112,13 @@ export default {
 		bottom: 10px;
 		padding: 50px;
 		width: 100%;
+		.logo {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			height: 50px;
+			width: auto;
+		}
 		h2 {
 			position: absolute;
 			bottom: 35px;

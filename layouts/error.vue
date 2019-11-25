@@ -21,7 +21,7 @@ export default {
 </script>
 
 <style lang="scss">
-.box{
+.box {
   width: 292px;
   background: #C0C0C0;
   border-width: 1px;
@@ -38,7 +38,7 @@ export default {
   	background: #000080;
   	color: #FFF;
 	}
-	img.title{
+	img.title {
   	float:left;
 	}
 	p.title{
@@ -48,45 +48,46 @@ export default {
   	font-weight: bold;
   	font-size: 11px;
 	}
-	.title button{
-  	right:3px;
-  	top:3px;*/
+	.title button {
+  	right: 3px;
+  	top: 3px;
  		margin: 2px 2px 2px 0;
-  float: right;
-  width: 14px;
-  height: 13.5px;
-  background: #C0C0C0;
-  border-width: 1px;
-  border-color: #FFFFFF #808080 #808080 #FFFFFF;
-  padding: 0;
-  font-size: 9px;
-  font-weight: bold;
-  font-family: Tahoma;
-  text-align: center;
-  focus:none;
-}
-div.body{
-  padding:13px 12px 12px;
-  height:100%;
-  width:calc(100% - 26px);
-  display:inline-block;
-}
-div.body p{
-  font-family:"MS Sans Serif";
-  font-size:11px;
-}
-div.body button{
-  font-family:"MS Sans Serif";
-  font-size:11px;
-  outline:1px solid #000000;
-  background:#C0C0C0;
-  border-width:1px;
-  border-style:solid;
-  border-color:#FFFFFF #808080 #808080 #FFFFFF;
-  padding:4px 10px;
-  margin:20px auto 3px;
-  display:block;
-  position:relative;
-  bottom:0px;
+  	float: right;
+  	width: 14px;
+  	height: 13.5px;
+  	background: #C0C0C0;
+  	border-width: 1px;
+  	border-color: #FFFFFF #808080 #808080 #FFFFFF;
+  	padding: 0;
+  	font-size: 9px;
+  	font-weight: bold;
+  	font-family: Tahoma;
+  	text-align: center;
+  	focus: none;
+	}
+	.body {
+  	padding: 13px 12px 12px;
+  	height: 100%;
+  	width: calc(100% - 26px);
+  	display: inline-block;
+		p {
+  		font-family: "MS Sans Serif";
+  		font-size: 11px;
+		}
+		button {
+  		font-family: "MS Sans Serif";
+  		font-size: 11px;
+  		outline: 1px solid #000000;
+  		background: #C0C0C0;
+  		border-width: 1px;
+  		border-style: solid;
+  		border-color: #FFFFFF #808080 #808080 #FFFFFF;
+  		padding: 4px 10px;
+  		margin: 20px auto 3px;
+  		display: block;
+  		position: relative;
+  		bottom: 0px;
+		}
+	}
 }
 </style>
