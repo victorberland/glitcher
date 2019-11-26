@@ -10,7 +10,7 @@
 		</transition>
 
 		<transition name="fade">
-			<header v-show="contentShow">
+			<header v-show="contentShow" class="front-header">
 				<img src="/logo-1.svg" class="logo"/>
 				<p @mouseenter="cursorScale1 = true" @mouseleave="cursorScale1 = false" @click="clickedInfo">Hva er Glitcher?</p>
 			</header>
@@ -106,7 +106,7 @@ export default {
 	}
 
 
-	header {
+	.front-header {
 		color: white;
 		position: fixed;
 		bottom: 10px;

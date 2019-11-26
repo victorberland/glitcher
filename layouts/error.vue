@@ -1,8 +1,7 @@
 <template>
 	<div class="box">
-    <div class="title">
-      <img src="http://i63.tinypic.com/117hi0p.png" width="18" height="18" class="title" />
-			<p class="title">{{ error.statusCode }}</p>
+    <div class="box-title">
+			<p>{{ error.statusCode }}</p>
 			<nuxt-link to="/"><button>X</button></nuxt-link>
     </div>
     <div class="body">
@@ -32,23 +31,23 @@ export default {
   left: 50%;
   transform: translate(-50%,-50%);
   padding: 1px;
-	.title{
+	.box-title {
   	height: 18px;
   	width: 100%;
   	background: #000080;
   	color: #FFF;
 	}
-	img.title {
-  	float:left;
+	.box-title img {
+  	float: left;
 	}
-	p.title{
+	.box-title p {
   	margin: 2px 0 0 1px;
   	float: left;
   	font-family: Tahoma;
   	font-weight: bold;
   	font-size: 11px;
 	}
-	.title button {
+	.box-title button {
   	right: 3px;
   	top: 3px;
  		margin: 2px 2px 2px 0;
