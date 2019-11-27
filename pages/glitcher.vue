@@ -3,7 +3,7 @@
 
 		<!-- <h1 class="big-text">"gamers<br/>rise up"</h1> -->
 		<transition name="fade">
-			<h1 class="big-text" v-show="blackColReady">"gamer<br/>society"</h1>
+			<h1 class="big-text" v-show="blackColReady" v-html="content.headline"></h1>
 		</transition>
 		<div class="black-col" :class="{ 'loaded-black': blackColReady }">
 				<div class="year">
@@ -14,11 +14,7 @@
 
 
 		<transition name="fade">
-			<div class="content" v-show="contentReady">
-				<p>Lorem ipsum dolor amet hella hexagon prism whatever beard echo park retro tousled. Hoodie pabst cardigan irony four dollar toast adaptogen. Squid hashtag taxidermy kombucha quinoa single-origin coffee cardigan lyft. Shabby chic echo park craft beer prism marfa franzen heirloom hella knausgaard selfies portland trust fund hot chicken. Wayfarers pour-over bicycle rights af etsy cray try-hard roof party 8-bit, enamel pin franzen. Irony +1 lyft hot chicken kombucha vexillologist disrupt pok pok keffiyeh master cleanse artisan. Tacos health goth literally cred, ennui lyft semiotics fingerstache tofu sriracha thundercats pabst.</p>
-				<img src="https://images.unsplash.com/photo-1544652478-6653e09f18a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80"/>
-				<p>Lorem ipsum dolor amet hella hexagon prism whatever beard echo park retro tousled. Hoodie pabst cardigan irony four dollar toast adaptogen. Squid hashtag taxidermy kombucha quinoa single-origin coffee cardigan lyft. Shabby chic echo park craft beer prism marfa franzen heirloom hella knausgaard selfies portland trust fund hot chicken. Wayfarers pour-over bicycle rights af etsy cray try-hard roof party 8-bit, enamel pin franzen. Irony +1 lyft hot chicken kombucha vexillologist disrupt pok pok keffiyeh master cleanse artisan. Tacos health goth literally cred, ennui lyft semiotics fingerstache tofu sriracha thundercats pabst.</p>
-				<img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"/>
+			<div class="content" v-show="contentReady" v-html="content.content">
 			</div>
 		</transition>
 
@@ -32,9 +28,13 @@ export default {
 		return {
 			blackColReady: false,
 			contentReady: false,
+			content: []
 		}
 	},
 	mounted() {
+		this.getData()
+
+
 		var that = this
 
 		setTimeout(function() {
@@ -44,6 +44,12 @@ export default {
 		setTimeout(function() {
 			that.contentReady = true
 		}, 700);
+	},
+	methods: {
+		async getData() {
+   		const content = await this.$axios.$get('/singletons/get/info')
+    	this.content = content
+  	}
 	}
 }
 </script>

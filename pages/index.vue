@@ -3,9 +3,12 @@
 
 		<div class="cursor-circle" :class="{ 'cursor-scale-1': cursorScale1, 'cursor-scale-2': cursorScale2, 'cursor-center': cursorCenter }"></div>
 
+		<div class="front-glitch" :class="{ 'glitch-slide': !contentShow }"></div>
+
 		<transition name="fade">
 			<div class="front-content" v-show="contentShow" @mouseenter="cursorScale2 = true" @mouseleave="cursorScale2 = false">
-				<h1 @mouseenter="frontMessage = frontMessageHover" @mouseleave="frontMessage = frontMessageOrig" @click="joinClicked">{{ frontMessage }}</h1>
+				<h1 class="title-front" @mouseenter="frontMessage = frontMessageHover" @mouseleave="frontMessage = frontMessageOrig" @click="joinClicked">{{ frontMessage }}</h1>
+				<h1 class="title-back" @mouseenter="frontMessage = frontMessageHover" @mouseleave="frontMessage = frontMessageOrig" @click="joinClicked">{{ frontMessage }}</h1>
 			</div>
 		</transition>
 
@@ -106,6 +109,38 @@ export default {
 	}
 
 
+	.front-glitch {
+		position: absolute;
+		left: 25%;
+		height: 100%;
+		max-width: 300px;
+		width: 25vw;
+		background: white;
+		mix-blend-mode: difference;
+		animation-name: glitchslide;
+		animation-duration: 2s;
+		animation-iteration-count: infinite;
+		animation-direction: alternate;
+		//animation-timing-function: linear;
+		transition: 2.3s left ease;
+	}
+
+	.glitch-slide {
+		left: -100%;
+	}
+
+	@keyframes glitchslide {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(60px);
+		}
+	}
+
+
+
+
 	.front-header {
 		color: white;
 		position: fixed;
@@ -114,9 +149,9 @@ export default {
 		width: 100%;
 		.logo {
 			position: absolute;
-			bottom: 0;
+			bottom: -15px;
 			left: 50px;
-			height: 150px;
+			height: 180px;
 			width: auto;
 			pointer-events: none;
 		}
@@ -142,16 +177,25 @@ export default {
 		mix-blend-mode: difference;
 		text-transform: uppercase;
 		white-space: nowrap;
-		border-bottom: 1px solid white;
-		h1 {
+		.title-back {
 			font-size: 5.5vw;
-			border-bottom: 1px solid white;
 			letter-spacing: 0.1em;
 			padding-bottom: 10px;
 			cursor: pointer;
 			text-shadow: -2px 2px 0 #fff, 2px 2px 0 #fff, 2px -2px 0 #fff, -2px -2px 0 #fff;
 			//text-shadow: -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;
 			margin-bottom: 10px;
+		}
+		.title-front {
+			position: absolute;
+			transform: translate(5%,30px);
+			font-size: 5vw;
+			letter-spacing: 0.1em;
+			padding-bottom: 10px;
+			cursor: pointer;
+			color: white;
+			margin-bottom: 10px;
+			text-align: center;
 		}
 	}
 

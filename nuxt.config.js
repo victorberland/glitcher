@@ -46,6 +46,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+		baseURL: 'https://api.glitcher.space/api'
   },
   /*
   ** Build configuration
