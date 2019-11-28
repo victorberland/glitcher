@@ -3,12 +3,12 @@
 
 		<div class="cursor-circle" :class="{ 'cursor-scale-1': cursorScale1, 'cursor-scale-2': cursorScale2, 'cursor-center': cursorCenter }"></div>
 
-		<div class="front-glitch" :class="{ 'glitch-slide': !contentShow }"></div>
+		<div class="front-glitch" :class="{ 'glitch-slide': !contentShow }" v-show="glitch"></div>
 
 		<transition name="fade">
 			<div class="front-content" v-show="contentShow" @mouseenter="cursorScale2 = true" @mouseleave="cursorScale2 = false">
-				<h1 class="title-front" @mouseenter="frontMessage = frontMessageHover" @mouseleave="frontMessage = frontMessageOrig" @click="joinClicked">{{ frontMessage }}</h1>
-				<h1 class="title-back" @mouseenter="frontMessage = frontMessageHover" @mouseleave="frontMessage = frontMessageOrig" @click="joinClicked">{{ frontMessage }}</h1>
+				<!-- <h1 class="title&#45;front" @mouseenter="frontMessage = frontMessageHover" @mouseleave="frontMessage = frontMessageOrig" @click="joinClicked">{{ frontMessage }}</h1> -->
+				<h1 class="title-back" @mouseenter="hoverTitle" @mouseleave="leaveHoverTitle" @click="joinClicked">{{ frontMessage }}</h1>
 			</div>
 		</transition>
 
@@ -33,7 +33,8 @@ export default {
 			cursorScale1: false,
 			cursorScale2: false,
 			cursorCenter: false,
-			contentShow: true
+			contentShow: true,
+			glitch: false
 		}
 	},
 	mounted() {
@@ -62,7 +63,7 @@ export default {
 
 			var that = this
 			setTimeout(function() {
-				that.$router.push('/hvordan')
+				that.$router.push('/blimed')
 			}, 1000)
 		},
 		clickedInfo() {
@@ -72,6 +73,14 @@ export default {
 			setTimeout(function() {
 				that.$router.push('/glitcher')
 			}, 1000)
+		},
+		hoverTitle() {
+			this.frontMessage = this.frontMessageHover
+			this.glitch = true
+		},
+		leaveHoverTitle() {
+			this.frontMessage = this.frontMessageOrig
+			this.glitch = false
 		}
 	}
 }
@@ -111,30 +120,39 @@ export default {
 
 	.front-glitch {
 		position: absolute;
-		left: 25%;
-		height: 100%;
-		max-width: 300px;
-		width: 25vw;
+		top: 50vh;
+		height: 70px;
+		width: 100%;
 		background: white;
 		mix-blend-mode: difference;
-		animation-name: glitchslide;
-		animation-duration: 2s;
+		animation-name: glitch;
+		animation-duration: 0.2s;
 		animation-iteration-count: infinite;
-		animation-direction: alternate;
-		//animation-timing-function: linear;
+		animation-timing-function: linear;
+		//animation-direction: alternate;
 		transition: 2.3s left ease;
+		opacity: 0;
 	}
 
 	.glitch-slide {
 		left: -100%;
 	}
 
-	@keyframes glitchslide {
+	@keyframes glitch {
 		0% {
-			transform: translateX(0);
+			opacity: 0;
+		}
+		25% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0;
+		}
+		75% {
+			opacity: 1;
 		}
 		100% {
-			transform: translateX(60px);
+			opacity: 1;
 		}
 	}
 
@@ -178,15 +196,16 @@ export default {
 		text-transform: uppercase;
 		white-space: nowrap;
 		.title-back {
-			font-size: 5.5vw;
+			font-size: 7vw;
 			letter-spacing: 0.1em;
 			padding-bottom: 10px;
 			cursor: pointer;
-			text-shadow: -2px 2px 0 #fff, 2px 2px 0 #fff, 2px -2px 0 #fff, -2px -2px 0 #fff;
-			//text-shadow: -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;
+			//text-shadow: -2px 2px 0 #fff, 2px 2px 0 #fff, 2px -2px 0 #fff, -2px -2px 0 #fff;
+			-webkit-text-stroke: 1px white;
 			margin-bottom: 10px;
 		}
 		.title-front {
+			display: none;
 			position: absolute;
 			transform: translate(5%,30px);
 			font-size: 5vw;

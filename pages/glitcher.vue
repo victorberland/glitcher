@@ -61,7 +61,8 @@ export default {
 		top: 10vh;
 		left: 10%;
 		font-size: 8vw;
-		text-shadow: -2px 2px 0 #fff, 2px 2px 0 #fff, 2px -2px 0 #fff, -2px -2px 0 #fff;
+		-webkit-text-stroke: 1px white;
+		//text-shadow: -2px 2px 0 #fff, 2px 2px 0 #fff, 2px -2px 0 #fff, -2px -2px 0 #fff;
 		mix-blend-mode: lighten;
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
