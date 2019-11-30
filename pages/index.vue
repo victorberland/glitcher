@@ -142,18 +142,24 @@ export default {
 		0% {
 			opacity: 0;
 		}
-		25% {
+		20% {
 			opacity: 1;
 		}
-		50% {
+		30% {
 			opacity: 0;
 		}
-		75% {
+		40% {
 			opacity: 1;
 		}
-		100% {
+		80% {
 			opacity: 1;
 		}
+    90% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
 	}
 
 
