@@ -125,4 +125,22 @@ export default {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+
+@media(max-width: 900px) {
+	.glitcher {
+		.big-text {
+			font-size: 12vw;
+		}
+		.black-col {
+			//display: none;
+			width: 50%;
+		}
+		.content {
+			left: 0;
+			top: 70vw;
+			width: 100%;
+			padding: 0 10%;
+		}
+	}
+}
 </style>

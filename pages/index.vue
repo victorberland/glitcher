@@ -7,8 +7,7 @@
 
 		<transition name="fade">
 			<div class="front-content" v-show="contentShow" @mouseenter="cursorScale2 = true" @mouseleave="cursorScale2 = false">
-				<!-- <h1 class="title&#45;front" @mouseenter="frontMessage = frontMessageHover" @mouseleave="frontMessage = frontMessageOrig" @click="joinClicked">{{ frontMessage }}</h1> -->
-				<h1 class="title-back" @mouseenter="hoverTitle" @mouseleave="leaveHoverTitle" @click="joinClicked">{{ frontMessage }}</h1>
+				<h1 class="title" @mouseenter="hoverTitle" @mouseleave="leaveHoverTitle" @click="joinClicked">{{ frontMessage }}</h1>
 			</div>
 		</transition>
 
@@ -201,7 +200,7 @@ export default {
 		mix-blend-mode: difference;
 		text-transform: uppercase;
 		white-space: nowrap;
-		.title-back {
+		.title {
 			font-size: 7vw;
 			letter-spacing: 0.1em;
 			padding-bottom: 10px;
@@ -209,18 +208,6 @@ export default {
 			//text-shadow: -2px 2px 0 #fff, 2px 2px 0 #fff, 2px -2px 0 #fff, -2px -2px 0 #fff;
 			-webkit-text-stroke: 1px white;
 			margin-bottom: 10px;
-		}
-		.title-front {
-			display: none;
-			position: absolute;
-			transform: translate(5%,30px);
-			font-size: 5vw;
-			letter-spacing: 0.1em;
-			padding-bottom: 10px;
-			cursor: pointer;
-			color: white;
-			margin-bottom: 10px;
-			text-align: center;
 		}
 	}
 
@@ -249,5 +236,19 @@ export default {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+@media(max-width: 900px) {
+	.front {
+		.cursor-circle {
+			display: none;
+		}
+		.front-header {
+			.logo {
+				height: 130px;
+				bottom: -5px;
+			}
+		}
+	}	
 }
 </style>
