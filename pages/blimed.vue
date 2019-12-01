@@ -1,5 +1,5 @@
 <template>
-  <div class="meld">
+  <div class="meld" :class="{ 'loaded-black': blackColReady }">
 		<transition name="fade">
 			<div class="content" v-show="contentReady">
 				<h1>Kom igjen,<br/>bli med!</h1>
@@ -35,7 +35,7 @@ export default {
   },
 	data() {
 		return {
-			bigCircle: false,
+			blackColReady: false,
 			contentReady: false,
 			userAge: '',
 			parentsConsent: false,
@@ -77,12 +77,15 @@ export default {
 	mounted() {
 		var that = this
 
+
+
 		setTimeout(function() {
-			that.bigCircle = true
+			that.blackColReady = true
 		}, 300);
+
 		setTimeout(function() {
 			that.contentReady = true
-		}, 1300);
+		}, 700);
 	}
 }
 </script>
@@ -91,34 +94,44 @@ export default {
 $purple1: #3F2E55;
 $purple2: #8F4C92;
 
+
+.loaded-black {
+	transform: translateX(0)!important;
+}
 .meld {
-	width: 800px;
+	width: 700px;
 	background: black;
 	float: right;
 	min-height: 100vh;
+	transform: translateX(100%);
+	transition: 1s transform ease;
 	color: white;
 	.content {
-		margin: 170px;
+		//margin: 170px;
+		margin: 15%;
 	}
 	input[type="text"], input[type="number"] {
 		width: 100%;
 		outline: none;
 		border: 0px;
-		border: 8px solid $purple1;
+		border: 2px solid white;
 		color: white;
 		background: black;
 		padding: 10px 20px;
 		font-size: 16px;
-		margin: 10px 0;
+		margin: 20px 0;
 	}
 	button {
 		margin-top: 40px;
 		font-size: 16px;
 		outline: none;
-		border: 8px solid $purple1;
-		background: $purple1;
+		border: 4px double white;
+		//background: $purple1;
+		background: black;
 		color: white;
 		padding: 10px 20px;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
 		width: 100%;
 		cursor: pointer;
 	}
@@ -140,5 +153,14 @@ $purple2: #8F4C92;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+@media (max-width: 900px) {
+	.meld {
+		width: 100%;
+		h1 {
+			font-size: 10vw;
+		}
+	}
 }
 </style>
