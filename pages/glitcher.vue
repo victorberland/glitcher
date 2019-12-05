@@ -97,8 +97,9 @@ export default {
 		position: absolute;
 		left: 47%;
 		color: white;
-		top: 55vh;
+		top: 60vh;
 		width: 45%;
+		float: right;
 		h1 {
 			font-size: 62px;
 			margin: 50px 0;
@@ -109,10 +110,9 @@ export default {
 			max-width: 670px;
 			line-height: 220%;
 			font-size: 16px;
-			float: right;
 		}
 		img {
-			width: 100%;
+			width: 130%;
 			height: auto;
 			margin: 100px 0;
 		}
