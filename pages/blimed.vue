@@ -4,15 +4,8 @@
 			<div class="content" v-show="contentReady">
 				<h1>Kom igjen,<br/>bli med!</h1>
 				<form>
-					<label>Hvor gammel er du?</label><br/>
+					<label>Hvor gammel er du (eller fyller i 2020)?</label><br/>
 					<input type="number" v-model="userAge" placeholder="Alder"/>
-
-					<div class="underage-consent" v-if="!overAge">
-						<br/>
-						Mine foresatte samtykker til at jeg får dra på Glitcher LAN
-						<input type="checkbox" v-model="parentsConsent"/>
-					</div>
-
 					<br/>
 					<br/>
 					<label>Hvor mange skal du melde på?</label><br/>
@@ -64,8 +57,8 @@ export default {
 					// Replace with the ID of your SKU
 					{sku: 'sku_GEEOtn0fRdwg48', quantity: Number(this.numberParticipants)}
 				],
-				successUrl: 'https://glitcher.space/success',
-				cancelUrl: 'https://glitcher.space/cancel',
+				successUrl: 'https://glitcher.space/yay',
+				cancelUrl: 'https://glitcher.space/avbryt',
 				// customerEmail: 'customer@example.com',
 			}).then(function (result) {
   			// If `redirectToCheckout` fails due to a browser or network
