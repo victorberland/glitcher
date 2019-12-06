@@ -50,12 +50,12 @@ export default {
 	},
 	methods: {
 		goCheckout() {
-			var stripe = Stripe('pk_test_sIbuppzttNc2FPdCHcEUUdyG');
+			var stripe = Stripe('pk_test_B7QaqTcDegjoupFAjQlmhIuH00TzJYAWD0');
 
 			stripe.redirectToCheckout({
 				items: [
 					// Replace with the ID of your SKU
-					{sku: 'sku_GEEOtn0fRdwg48', quantity: Number(this.numberParticipants)}
+					{sku: 'sku_GJLlDK0sVRpNFG', quantity: Number(this.numberParticipants)}
 				],
 				successUrl: 'https://glitcher.space/yay',
 				cancelUrl: 'https://glitcher.space/avbryt',
