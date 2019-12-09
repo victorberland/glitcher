@@ -47,8 +47,8 @@ export default {
 	},
 	methods: {
 		async getData() {
-   		const content = await this.$axios.$get('/singletons/get/info')
-    	this.content = content
+   		const content = await this.$axios.get('/singletons/get/info')
+    	this.content = content.data
   	}
 	}
 }
