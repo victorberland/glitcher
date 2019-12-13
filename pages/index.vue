@@ -1,20 +1,20 @@
 <template>
   <div class="front">
 
-		<div class="cursor-circle" :class="{ 'cursor-scale-1': cursorScale1, 'cursor-scale-2': cursorScale2, 'cursor-center': cursorCenter }"></div>
+		<!-- <div class="cursor&#45;circle" :class="{ 'cursor&#45;scale&#45;1': cursorScale1, 'cursor&#45;scale&#45;2': cursorScale2, 'cursor&#45;center': cursorCenter }"></div> -->
 
 		<div class="front-glitch" :class="{ 'glitch-slide': !contentShow }" v-show="glitch"></div>
 
 		<transition name="fade">
-			<div class="front-content" v-show="contentShow" @mouseenter="cursorScale2 = true" @mouseleave="cursorScale2 = false">
-				<h1 class="title" @mouseenter="hoverTitle" @mouseleave="leaveHoverTitle" @click="joinClicked">{{ frontMessage }}</h1>
+			<div class="front-content" v-show="contentShow">
+				<h1 class="glitch-title" @mouseenter="hoverTitle" @mouseleave="leaveHoverTitle" @click="joinClicked">{{ frontMessage }}</h1>
 			</div>
 		</transition>
 
 		<transition name="fade">
 			<header v-show="contentShow" class="front-header">
 				<img src="/logo-2.svg" class="logo"/>
-				<p @mouseenter="cursorScale1 = true" @mouseleave="cursorScale1 = false" @click="clickedInfo">Hva er Glitcher?</p>
+				<p class="clickable" @click="clickedInfo">Hva er Glitcher?</p>
 			</header>
 		</transition>
 
@@ -23,39 +23,39 @@
 
 <script>
 export default {
+	plugins: ['~/plugins/cursor.js'],
 	data() {
 		return {
 			frontMessage: '',
 			frontMessageOrig: '14 - 16 februar',
 			// frontMessageHover: 'ka vente du på?',
 			frontMessageHover: 'gamers rise up',
-			cursorScale1: false,
-			cursorScale2: false,
-			cursorCenter: false,
 			contentShow: true,
 			glitch: false
 		}
 	},
 	mounted() {
+
+
 		this.frontMessage = this.frontMessageOrig
 
-		let cursorCircle = document.querySelector('.cursor-circle')
-		document.onmousemove = (event) => this.moveCursor(event, cursorCircle);
+		// let cursorCircle = document.querySelector('.cursor-circle')
+		// document.onmousemove = (event) => this.moveCursor(event, cursorCircle);
 	},
 	methods: {
-		moveCursor(event, cursorDot) {
-			console.log(event)
-			var xpos = event.clientX;
-			var ypos = event.clientY;
-			// var wheight = window.innerHeight;
-			// var wwidth = window.innerWidth;
-
-			// overlay.style.left = (wwidth / 20) + xpos / 1.2 +'px';
-			// overlay.style.top = (wheight / 25) + ypos / 1.2 +'px';
-
-			cursorDot.style.left = xpos +'px';
-			cursorDot.style.top = ypos +'px';
-		},
+		// moveCursor(event, cursorDot) {
+		// 	console.log(event)
+		// 	var xpos = event.clientX;
+		// 	var ypos = event.clientY;
+		// 	// var wheight = window.innerHeight;
+		// 	// var wwidth = window.innerWidth;
+    //
+		// 	// overlay.style.left = (wwidth / 20) + xpos / 1.2 +'px';
+		// 	// overlay.style.top = (wheight / 25) + ypos / 1.2 +'px';
+    //
+		// 	cursorDot.style.left = xpos +'px';
+		// 	cursorDot.style.top = ypos +'px';
+		// },
 		joinClicked() {
 			this.contentShow = false
 			this.cursorCenter = true
@@ -200,7 +200,7 @@ export default {
 		mix-blend-mode: difference;
 		text-transform: uppercase;
 		white-space: nowrap;
-		.title {
+		.glitch-title {
 			font-size: 7vw;
 			letter-spacing: 0.1em;
 			padding-bottom: 10px;

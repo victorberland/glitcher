@@ -3,6 +3,10 @@
 
 		<!-- <h1 class="big-text">"gamers<br/>rise up"</h1> -->
 		<transition name="fade">
+			<nuxt-link to="/blimed" class="join" v-show="contentReady">Bli med.</nuxt-link>
+		</transition>
+
+		<transition name="fade">
 			<h1 class="big-text" v-show="blackColReady" v-html="content.headline"></h1>
 		</transition>
 		<div class="black-col" :class="{ 'loaded-black': blackColReady }">
@@ -56,6 +60,18 @@ export default {
 
 <style lang="scss">
 .glitcher {
+	.join {
+		position: absolute;
+		top: 0;
+		right: 0;
+		margin: 45px 60px;
+		//-webkit-text-stroke: 1px white;
+		//text-transform: uppercase;
+		font-size: 20px;
+		//letter-spacing: 0.1em;
+		color: white;
+		text-decoration: none;
+	}
 	.big-text {
 		position: absolute;
 		top: 10vh;

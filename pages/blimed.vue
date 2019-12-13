@@ -1,8 +1,11 @@
 <template>
   <div class="meld" :class="{ 'loaded-black': blackColReady }">
 		<transition name="fade">
-			<div class="content" v-show="contentReady">
+			<div class="container" v-show="contentReady">
 				<h1>Kom igjen,<br/>bli med!</h1>
+				<div class="content">
+					{{ content }}
+				</div>
 				<form>
 					<label>Hvor gammel er du (eller fyller i 2020)?</label><br/>
 					<input type="number" v-model="userAge" placeholder="Alder"/>
@@ -10,8 +13,10 @@
 					<br/>
 					<label>Hvor mange skal du melde på?</label><br/>
 					<input type="number" v-model="numberParticipants" placeholder="Antall"/>
-
 				</form>
+				<br/>
+				<p>{{ inputError }}</p>
+				<br/>
 				<button type="button" @click="goCheckout" v-if="overAge || parentsConsent">Fortsett</button>
 			</div>
 		</transition>
@@ -30,20 +35,28 @@ export default {
 		return {
 			blackColReady: false,
 			contentReady: false,
+			content: 'Vi ser fram til å se deg på Glitcher LAN. Men før vi snakkes, ønsker vi å opplyse deg om hvordan prosessen vil foregå. I første omgang når du nå bestiller reserverer du plass på LANet. I januar vil du motta en e-post hvor du vil kunne velge bord.',
 			userAge: '',
 			parentsConsent: false,
-			numberParticipants: 1
+			numberParticipants: 1,
+			inputError: ''
 		}
 	},
 	computed: {
 		overAge() {
 			var ageLimit = 13
 
-			if (this.userAge <= ageLimit) {
+			if (this.userAge <= ageLimit && this.userAge > 1) {
+				this.inputError = 'Beklager, Glitcher er kun for gamers over 13 år.'
+				return false
+			} else if (this.numberParticipants > 15) {
+				this.inputError = 'Vi beklager for at dere er litt for mange gamers for samfunnet.'
 				return false
 			} else if (this.userAge > ageLimit) {
+				this.inputError = ''
 				return true
 			} else {
+				this.inputError = ''
 				return false
 			}
 		}
@@ -99,9 +112,13 @@ $purple2: #8F4C92;
 	transform: translateX(100%);
 	transition: 1s transform ease;
 	color: white;
-	.content {
+	.container {
 		//margin: 170px;
 		margin: 15%;
+		.content {
+			line-height: 200%;
+			margin-top: 50px;
+		}
 	}
 	input[type="text"], input[type="number"] {
 		width: 100%;
