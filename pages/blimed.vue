@@ -13,6 +13,10 @@
 					<br/>
 					<label>Hvor mange skal du melde på?</label><br/>
 					<input type="number" v-model="numberParticipants" placeholder="Antall"/>
+					<br/>
+					<br/>
+					<label>E-postadresse</label>
+					<input type="email" v-model="email" placeholder="E-post"/>
 				</form>
 				<br/>
 				<p class="errortext">{{ inputError }}</p>
@@ -38,6 +42,7 @@ export default {
 			content: 'Sett av datoen, vi ser fram til å se deg på Glitcher LAN! Men før du melder deg på, ønsker vi at du leser <a href="/reglement" class="clickable">reglementet for Glitcher</a>',
 			userAge: '',
 			numberParticipants: 1,
+			email: '',
 			inputError: ''
 		}
 	},
@@ -62,6 +67,7 @@ export default {
 	},
 	methods: {
 		goCheckout() {
+			var that = this
 			if (this.overAge) {
 				var stripe = Stripe('pk_test_B7QaqTcDegjoupFAjQlmhIuH00TzJYAWD0');
 
@@ -72,7 +78,7 @@ export default {
 					],
 					successUrl: 'https://glitcher.space/yay',
 					cancelUrl: 'https://glitcher.space/avbryt',
-					// customerEmail: 'customer@example.com',
+					customerEmail: that.email,
 				}).then(function (result) {
 					// If `redirectToCheckout` fails due to a browser or network
 					// error, display the localized error message to your customer
@@ -125,7 +131,7 @@ $purple2: #8F4C92;
 			}
 		}
 	}
-	input[type="text"], input[type="number"] {
+	input[type="text"], input[type="number"], input[type="email"] {
 		width: 100%;
 		outline: none;
 		border: 0px;
