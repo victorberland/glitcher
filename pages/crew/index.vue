@@ -38,7 +38,7 @@ export default {
 
 		axios({
       method: 'post',
-      url: 'http://chatly.no/Vic/as/participants',
+			url: 'https://api.glitcher.space/participants',
       data: {
         password: 'GlitcherLAN2020'
       },
