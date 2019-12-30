@@ -7,13 +7,14 @@
 
 <script>
 import Back from '~/components/Back.vue'
-
+import { Cursor } from '~/assets/modules/cursor.js'
  export default {
 		components: {
    		Back
   	},
 	 mounted() {
-	
+		 const cursor = new Cursor()
+		 cursor.initCursor()
 	 }
  }
 </script>

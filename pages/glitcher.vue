@@ -3,7 +3,7 @@
 
 		<!-- <h1 class="big-text">"gamers<br/>rise up"</h1> -->
 		<transition name="fade">
-			<nuxt-link to="/blimed" class="join" v-show="contentReady">Bli med.</nuxt-link>
+			<nuxt-link to="/blimed" class="join clickable" v-show="contentReady">Bli med.</nuxt-link>
 		</transition>
 
 		<transition name="fade">
@@ -26,7 +26,6 @@
 </template>
 
 <script>
-
 export default {
 	data() {
 		return {

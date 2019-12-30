@@ -23,7 +23,6 @@
 
 <script>
 export default {
-	plugins: ['~/plugins/cursor.js'],
 	data() {
 		return {
 			frontMessage: '',

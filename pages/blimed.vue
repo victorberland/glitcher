@@ -2,9 +2,9 @@
   <div class="meld" :class="{ 'loaded-black': blackColReady }">
 		<transition name="fade">
 			<div class="container" v-show="contentReady">
-				<h1>Kom igjen,<br/>bli med!</h1>
-				<div class="content">
-					{{ content }}
+				<!-- <h1>Kom igjen,<br/>bli med!</h1> -->
+				<h1>14 - 16 februar</h1>
+				<div class="content" v-html="content">
 				</div>
 				<form>
 					<label>Hvor gammel er du (eller fyller i 2020)?</label><br/>
@@ -15,9 +15,9 @@
 					<input type="number" v-model="numberParticipants" placeholder="Antall"/>
 				</form>
 				<br/>
-				<p>{{ inputError }}</p>
+				<p class="errortext">{{ inputError }}</p>
 				<br/>
-				<button type="button" @click="goCheckout" v-if="overAge || parentsConsent">Fortsett</button>
+				<button type="button" @click="goCheckout" v-show="overAge" class="clickable">Fortsett</button>
 			</div>
 		</transition>
   </div>
@@ -35,9 +35,8 @@ export default {
 		return {
 			blackColReady: false,
 			contentReady: false,
-			content: 'Vi ser fram til å se deg på Glitcher LAN. Men før vi snakkes, ønsker vi å opplyse deg om hvordan prosessen vil foregå. I første omgang når du nå bestiller reserverer du plass på LANet. I januar vil du motta en e-post hvor du vil kunne velge bord.',
+			content: 'Sett av datoen, vi ser fram til å se deg på Glitcher LAN! Men før du melder deg på, ønsker vi at du leser <a href="/reglement" class="clickable">reglementet for Glitcher</a>',
 			userAge: '',
-			parentsConsent: false,
 			numberParticipants: 1,
 			inputError: ''
 		}
@@ -50,7 +49,7 @@ export default {
 				this.inputError = 'Beklager, Glitcher er kun for gamers over 13 år.'
 				return false
 			} else if (this.numberParticipants > 15) {
-				this.inputError = 'Vi beklager for at dere er litt for mange gamers for samfunnet.'
+				this.inputError = 'Vi beklager for at dere er litt for mange gamers for samfunnet vårt.'
 				return false
 			} else if (this.userAge > ageLimit) {
 				this.inputError = ''
@@ -63,21 +62,23 @@ export default {
 	},
 	methods: {
 		goCheckout() {
-			var stripe = Stripe('pk_test_B7QaqTcDegjoupFAjQlmhIuH00TzJYAWD0');
+			if (this.overAge) {
+				var stripe = Stripe('pk_test_B7QaqTcDegjoupFAjQlmhIuH00TzJYAWD0');
 
-			stripe.redirectToCheckout({
-				items: [
-					// Replace with the ID of your SKU
-					{sku: 'sku_GJLlDK0sVRpNFG', quantity: Number(this.numberParticipants)}
-				],
-				successUrl: 'https://glitcher.space/yay',
-				cancelUrl: 'https://glitcher.space/avbryt',
-				// customerEmail: 'customer@example.com',
-			}).then(function (result) {
-  			// If `redirectToCheckout` fails due to a browser or network
-  			// error, display the localized error message to your customer
-  			// using `result.error.message`.
-			});
+				stripe.redirectToCheckout({
+					items: [
+						// Replace with the ID of your SKU
+						{sku: 'sku_GJLlDK0sVRpNFG', quantity: Number(this.numberParticipants)}
+					],
+					successUrl: 'https://glitcher.space/yay',
+					cancelUrl: 'https://glitcher.space/avbryt',
+					// customerEmail: 'customer@example.com',
+				}).then(function (result) {
+					// If `redirectToCheckout` fails due to a browser or network
+					// error, display the localized error message to your customer
+					// using `result.error.message`.
+				});
+			}
 		}
 	},
 	mounted() {
@@ -118,6 +119,10 @@ $purple2: #8F4C92;
 		.content {
 			line-height: 200%;
 			margin-top: 50px;
+			a {
+				text-decoration: none;
+				color: purple;
+			}
 		}
 	}
 	input[type="text"], input[type="number"] {
@@ -130,6 +135,10 @@ $purple2: #8F4C92;
 		padding: 10px 20px;
 		font-size: 16px;
 		margin: 20px 0;
+	}
+	.errortext {
+		line-height: 200%;
+		opacity: 0.5;
 	}
 	button {
 		margin-top: 40px;
@@ -146,7 +155,8 @@ $purple2: #8F4C92;
 		cursor: pointer;
 	}
 	h1 {
-		font-size: 62px;
+		//font-size: 62px;
+		font-size: 86px;
 		color: black;
 		text-transform: uppercase;
 		-webkit-text-stroke: 1px white;
