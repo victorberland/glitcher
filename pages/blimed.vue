@@ -69,14 +69,14 @@ export default {
 		goCheckout() {
 			var that = this
 			if (this.overAge) {
-				var stripe = Stripe('pk_test_B7QaqTcDegjoupFAjQlmhIuH00TzJYAWD0');
+				var stripe = Stripe('pk_live_Kax5nieVSihzoQw18OLjbqyD00o5aqSi01');
 
 				stripe.redirectToCheckout({
 					items: [
 						// Replace with the ID of your SKU
-						{sku: 'sku_GJLlDK0sVRpNFG', quantity: Number(this.numberParticipants)}
+						{sku: 'sku_GHCoyq9zL5EOPn', quantity: Number(this.numberParticipants)}
 					],
-					successUrl: 'https://glitcher.space/yay',
+					successUrl: 'https://glitcher.space/gg',
 					cancelUrl: 'https://glitcher.space/avbryt',
 					customerEmail: that.email,
 				}).then(function (result) {

@@ -1,8 +1,8 @@
 <template>
   <div class="success">
 
-		<h1>Super.</h1>
-		<h3>Brofist! Du er nå påmeldt Glitcher LAN og vil straks motta en bekreftelse på e-post om dette samt mer info om hva som skjer videre. Lykke til i samfunnet i mellomtiden!</h3>
+		<h1>GG.</h1>
+		<h3>Fett! Du er nå påmeldt Glitcher LAN og vil straks motta en bekreftelse på e-post. Vi vil holde deg oppdatert på hva som skjer videre via e-post. Lykke til i samfunnet i mellomtiden!</h3>
 		<nuxt-link class="button" to="/">Tilbake</nuxt-link>
 
   </div>
