@@ -1,6 +1,12 @@
 <template>
   <div class="glitcher">
 
+		<transition name="fade">
+			<nuxt-link to="/" class="home clickable" v-show="contentReady">
+				<img src="/logo-2.svg"/>
+			</nuxt-link>
+		</transition>
+
 		<!-- <h1 class="big-text">"gamers<br/>rise up"</h1> -->
 		<transition name="fade">
 			<nuxt-link to="/blimed" class="join clickable" v-show="contentReady">Bli med.</nuxt-link>
@@ -59,6 +65,17 @@ export default {
 
 <style lang="scss">
 .glitcher {
+
+	.home {
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin: 2px 60px;
+		text-decoration: none;
+		width: 180px;
+		z-index: 5;
+	}
+
 	.join {
 		position: absolute;
 		top: 0;
@@ -115,6 +132,7 @@ export default {
 		top: 60vh;
 		width: 45%;
 		float: right;
+		padding-bottom: 150px;
 		h1 {
 			font-size: 62px;
 			margin: 50px 0;
@@ -142,6 +160,9 @@ export default {
 }
 
 @media(max-width: 900px) {
+	.home {
+		display: none;
+	}
 	.glitcher {
 		.big-text {
 			font-size: 12vw;

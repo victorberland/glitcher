@@ -1,8 +1,14 @@
 <template>
   <div class="meld" :class="{ 'loaded-black': blackColReady }">
+	
+		<transition name="fade">
+			<nuxt-link to="/" class="home clickable" v-show="contentReady">
+				<img src="/logo-2.svg"/>
+			</nuxt-link>
+		</transition>
+
 		<transition name="fade">
 			<div class="container" v-show="contentReady">
-				<!-- <h1>Kom igjen,<br/>bli med!</h1> -->
 				<h1>14 - 16 februar</h1>
 				<div class="content" v-html="content">
 				</div>
@@ -39,7 +45,8 @@ export default {
 		return {
 			blackColReady: false,
 			contentReady: false,
-			content: 'Sett av datoen, vi ser fram til å se deg på Glitcher LAN! Men før du melder deg på, ønsker vi at du leser <a href="/reglement" class="clickable">reglementet for Glitcher</a>',
+			// content: 'Sett av datoen, vi ser fram til å se deg på Glitcher LAN! Men før du melder deg på, ønsker vi at du leser <a href="/reglement" class="clickable">reglementet for Glitcher</a>',
+			content: 'Ikke langt igjen nå før du er påmeldt, vi gleder oss til å møte deg på Glitcher! Men før du melder deg på kan det være greit å lese mer om <a href="/glitcher" class="clickable">om Glitcher</a> dersom du ikke allerede har gjort dette.',
 			userAge: '',
 			numberParticipants: 1,
 			email: '',
@@ -50,13 +57,15 @@ export default {
 		overAge() {
 			var ageLimit = 13
 
-			if (this.userAge <= ageLimit && this.userAge > 1) {
+			if (this.userAge < ageLimit && this.userAge > 1) {
 				this.inputError = 'Beklager, Glitcher er kun for gamers over 13 år.'
 				return false
 			} else if (this.numberParticipants > 15) {
 				this.inputError = 'Vi beklager for at dere er litt for mange gamers for samfunnet vårt.'
 				return false
-			} else if (this.userAge > ageLimit) {
+			} else if (this.email == '') {
+				return false
+			} else if (this.userAge >= ageLimit) {
 				this.inputError = ''
 				return true
 			} else {
@@ -77,7 +86,7 @@ export default {
 						{sku: 'sku_GHCoyq9zL5EOPn', quantity: Number(this.numberParticipants)}
 					],
 					successUrl: 'https://glitcher.space/gg',
-					cancelUrl: 'https://glitcher.space/avbryt',
+					cancelUrl: 'https://glitcher.space',
 					customerEmail: that.email,
 				}).then(function (result) {
 					// If `redirectToCheckout` fails due to a browser or network
@@ -119,6 +128,16 @@ $purple2: #8F4C92;
 	transform: translateX(100%);
 	transition: 1s transform ease;
 	color: white;
+
+	.home {
+		position: absolute;
+		top: 0;
+		right: 0;
+		margin: 2px 60px;
+		text-decoration: none;
+		width: 150px;
+		z-index: 5;
+	}
 	.container {
 		//margin: 170px;
 		margin: 15%;
@@ -184,6 +203,9 @@ $purple2: #8F4C92;
 @media (max-width: 900px) {
 	.meld {
 		width: 100%;
+		.home {
+			display: none;
+		}
 		h1 {
 			font-size: 10vw;
 		}

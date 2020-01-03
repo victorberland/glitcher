@@ -201,6 +201,7 @@ export default {
 		white-space: nowrap;
 		.glitch-title {
 			font-size: 7vw;
+			text-align: center;
 			letter-spacing: 0.1em;
 			padding-bottom: 10px;
 			cursor: pointer;
@@ -246,6 +247,12 @@ export default {
 			.logo {
 				height: 130px;
 				bottom: -5px;
+			}
+		}
+		.front-content {
+			white-space: break-spaces!important;
+			.glitch-title {
+				font-size: 12vw;
 			}
 		}
 	}	
