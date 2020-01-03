@@ -1,5 +1,11 @@
 <template>
   <div class="admin">
+		<div class="login" v-show="login">
+			<h1>Glitcher Crew</h1>
+			<input type="password" v-model="password"/>
+			<button type="button" @click="logIn">Logg inn</button>
+		</div>
+
 		<header class="header">
 		</header>
 
@@ -30,36 +36,36 @@ export default {
 	data() {
 		return {
 			participants: [],
-			stripeShow: false
+			stripeShow: false,
+			login: true,
 		}
 	},
-	mounted() {
-		var that = this
-
-		axios({
-      method: 'post',
-			url: 'https://api.glitcher.space/participants',
-      data: {
-        password: 'GlitcherLAN2020'
-      },
-      headers: {
-        'Content-Type': 'text/plain;charset=utf-8'
-      }
-    })
-  	.then(function (response) {
-   		console.log(response);
-			that.participants = response.data
-  	})
-  	.catch(function (error) {
-    	console.log(error);
-  	})
+	mounted() {	
 	},
 	methods: {
-		joinClicked() {
+		logIn() {
 			var that = this
-			setTimeout(function() {
-				that.$router.push('/blimed')
-			}, 1000)
+
+			axios({
+				method: 'post',
+				url: 'https://api.glitcher.space/participants',
+				data: {
+					password: that.password
+				},
+				headers: {
+					'Content-Type': 'text/plain;charset=utf-8'
+				}
+			})
+			.then(function (response) {
+				console.log(response);
+				that.participants = response.data
+				if (that.participants[0].email) {
+					that.login = false
+				}
+			})
+			.catch(function (error) {
+				console.log(error);
+			})
 		}
 	},
 	computed: {
@@ -70,10 +76,41 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+$purple-1: #24054B;
+$purple-2: #9767C4;
 .admin {
 	padding-left: 15%;
-	background: #24054B;
+	background: $purple-1;
+	min-height: 100vh;
+	.login {
+		position: fixed;
+		height: 100vh;
+		width: 100%;
+		background: $purple-1;
+		z-index: 100;
+		padding-top: 120px;
+		h1 {
+			font-size: 5vw;
+			-webkit-text-stroke: 1px white;
+			mix-blend-mode: lighten;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+			line-height: 120%;
+    	z-index: 1;
+			margin-bottom: 50px;
+		}
+		input, button {
+			border: 1px solid white;
+			background: $purple-1;
+			color: white;
+			padding: 10px 20px;
+			font-size: 1em;
+		}
+		button {
+			cursor: pointer;
+		}
+	}
 	.main {
 		padding-top: 200px;
 		max-width: 1000px;
@@ -94,7 +131,7 @@ export default {
 			margin-top: 200px;
 			.participant {
 				border-radius: 10px;
-				background: #9767C4;
+				background: $purple-2;
 				color: rgba(black, 0.8);
 				margin: 50px 0;
 				padding: 40px 50px;
