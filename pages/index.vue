@@ -1,21 +1,36 @@
 <template>
   <div class="front">
 
-		<!-- <div class="cursor&#45;circle" :class="{ 'cursor&#45;scale&#45;1': cursorScale1, 'cursor&#45;scale&#45;2': cursorScale2, 'cursor&#45;center': cursorCenter }"></div> -->
-
-		<div class="front-glitch" :class="{ 'glitch-slide': !contentShow }" v-show="glitch"></div>
-
 		<transition name="fade">
-			<div class="front-content" v-show="contentShow">
-				<h1 class="glitch-title" @mouseenter="hoverTitle" @mouseleave="leaveHoverTitle" @click="joinClicked">{{ frontMessage }}</h1>
-			</div>
+		</transition>
+
+		<!-- <h1 class="big-text">"gamers<br/>rise up"</h1> -->
+		<transition name="fade">
+			<header class="header">
+				<nuxt-link to="/" class="home clickable" v-show="contentReady">
+					<img src="/logo-2.svg"/>
+				</nuxt-link>
+				<div class="header-right">
+					<p>14 - 16 februar, Kopervik VGS</p>
+					<nuxt-link to="/blimed" class="join clickable" v-show="contentReady">Bli med.</nuxt-link>
+				</div>
+			</header>
 		</transition>
 
 		<transition name="fade">
-			<header v-show="contentShow" class="front-header">
-				<img src="/logo-2.svg" class="logo"/>
-				<p class="clickable" @click="clickedInfo">Hva er Glitcher?</p>
-			</header>
+			<h1 class="big-text" v-show="blackColReady" v-html="content.headline"></h1>
+		</transition>
+		<div class="black-col" :class="{ 'loaded-black': blackColReady }">
+				<div class="year">
+					<h1>14</h1>
+					<h1>02</h1>
+				</div>
+			</div>
+
+
+		<transition name="fade">
+			<div class="content" v-show="contentReady" v-html="content.content">
+			</div>
 		</transition>
 
   </div>
@@ -25,236 +40,165 @@
 export default {
 	data() {
 		return {
-			frontMessage: '',
-			frontMessageOrig: '14 - 16 februar',
-			// frontMessageHover: 'ka vente du på?',
-			frontMessageHover: 'gamers rise up',
-			contentShow: true,
-			glitch: false
+			blackColReady: false,
+			contentReady: false,
+			content: []
 		}
 	},
 	mounted() {
+		this.getData()
 
 
-		this.frontMessage = this.frontMessageOrig
+		var that = this
 
-		// let cursorCircle = document.querySelector('.cursor-circle')
-		// document.onmousemove = (event) => this.moveCursor(event, cursorCircle);
+		setTimeout(function() {
+			that.blackColReady = true
+		}, 300);
+
+		setTimeout(function() {
+			that.contentReady = true
+		}, 700);
 	},
 	methods: {
-		// moveCursor(event, cursorDot) {
-		// 	console.log(event)
-		// 	var xpos = event.clientX;
-		// 	var ypos = event.clientY;
-		// 	// var wheight = window.innerHeight;
-		// 	// var wwidth = window.innerWidth;
-    //
-		// 	// overlay.style.left = (wwidth / 20) + xpos / 1.2 +'px';
-		// 	// overlay.style.top = (wheight / 25) + ypos / 1.2 +'px';
-    //
-		// 	cursorDot.style.left = xpos +'px';
-		// 	cursorDot.style.top = ypos +'px';
-		// },
-		joinClicked() {
-			this.contentShow = false
-			this.cursorCenter = true
-
-			var that = this
-			setTimeout(function() {
-				that.$router.push('/blimed')
-			}, 1000)
-		},
-		clickedInfo() {
-			this.contentShow = false
-			var that = this
-
-			setTimeout(function() {
-				that.$router.push('/glitcher')
-			}, 1000)
-		},
-		hoverTitle() {
-			this.frontMessage = this.frontMessageHover
-			this.glitch = true
-		},
-		leaveHoverTitle() {
-			this.frontMessage = this.frontMessageOrig
-			this.glitch = false
-		}
+		async getData() {
+   		const content = await this.$axios.get('/singletons/get/info')
+    	this.content = content.data
+  	}
 	}
 }
 </script>
 
 <style lang="scss">
 .front {
-	.cursor-circle {
+
+	.header {
 		position: fixed;
-		left: 0;
 		top: 0;
-		width: 30px;
-		height: 30px;
-		background: white;
-		border-radius: 100%;
-		transition: 0.2s ease;
-		transform: translate(-50%,-50%);
-		mix-blend-mode: difference;
-		z-index: 10;
-		pointer-events: none;
-	}
-	.cursor-scale-1 {
-		transform: translate(-50%,-50%) scale(3);
-	}
-	.cursor-scale-2 {
-		transform: translate(-50%,-50%) scale(4);
-	}
-	.cursor-center {
-		top: 50%!important;
-		left: 50%!important;
-		width: 200px;
-		height: 200px;
-		transform: translate(-50%,-50%) scale(1);
-		mix-blend-mode: normal;
-	}
-
-
-	.front-glitch {
-		position: absolute;
-		top: 50vh;
-		height: 70px;
-		width: 100%;
-		background: white;
-		mix-blend-mode: difference;
-		animation-name: glitch;
-		animation-duration: 0.2s;
-		animation-iteration-count: infinite;
-		animation-timing-function: linear;
-		//animation-direction: alternate;
-		transition: 2.3s left ease;
-		opacity: 0;
-	}
-
-	.glitch-slide {
-		left: -100%;
-	}
-
-	@keyframes glitch {
-		0% {
-			opacity: 0;
-		}
-		20% {
-			opacity: 1;
-		}
-		30% {
-			opacity: 0;
-		}
-		40% {
-			opacity: 1;
-		}
-		80% {
-			opacity: 1;
-		}
-    90% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-	}
-
-
-
-
-	.front-header {
+		width: calc(100% - (60px * 2);
+		//right: 0;
+		margin: 45px 60px;
+		//-webkit-text-stroke: 1px white;
+		//text-transform: uppercase;
+		font-size: 20px;
+		//letter-spacing: 0.1em;
 		color: white;
-		position: fixed;
-		bottom: 10px;
-		padding: 50px;
-		width: 100%;
-		.logo {
-			position: absolute;
-			bottom: -15px;
-			left: 50px;
-			height: 180px;
-			width: auto;
-			pointer-events: none;
+		text-decoration: none;
+		z-index: 5;
+		.home {
+			width: 180px;
+			display: block;
+			float: left;
+			margin-top: -45px;
 		}
-		h2 {
+		.header-right {
+			float: right;
+			* {
+				float: left;
+				margin: 0 30px;
+				&:last-child {
+					margin-right: 0;
+				}
+			}
+			p {
+				opacity: 0.7;
+			}
+			.join {
+				color: white;
+				text-decoration: none;
+				padding-bottom: 6px;
+				border-bottom: 2px solid white;
+			}
+		}
+	}
+	.big-text {
+		position: absolute;
+		top: 10vh;
+		left: 10%;
+		font-size: 8vw;
+		-webkit-text-stroke: 1px white;
+		//text-shadow: -2px 2px 0 #fff, 2px 2px 0 #fff, 2px -2px 0 #fff, -2px -2px 0 #fff;
+		mix-blend-mode: lighten;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		line-height: 120%;
+		text-indent: 9vw;
+    z-index: 1;
+	}
+	.loaded-black {
+		transform: translateX(0)!important;
+	}
+	.black-col {
+		width: 40%;
+		min-height: 100vh;
+		background: black;
+		transform: translateX(-100%);
+		transition: 1s transform ease;
+		color: white;
+		padding: 70px;
+		mix-blend-mode: color-burn;
+		position: fixed;
+		.year {
 			position: absolute;
-			bottom: 35px;
+			bottom: 50px;
+			h1 {
+				font-size: 10vw;
+				user-select: none;
+				pointer-events: none;
+			}
+		}
+	}
+	.content {
+		position: absolute;
+		left: 47%;
+		color: white;
+		top: 60vh;
+		width: 45%;
+		float: right;
+		padding-bottom: 150px;
+		h1 {
+			font-size: 62px;
+			margin: 50px 0;
+			color: white;
+			mix-blend-mode: difference;
 		}
 		p {
-			position: absolute;
-			right: 0;
-			transform: rotate(-90deg) translate(50%,0);
-			font-size: 20px;
-			color: white;
-			cursor: pointer;
+			max-width: 670px;
+			line-height: 220%;
+			font-size: 16px;
+		}
+		img {
+			width: 130%;
+			height: auto;
+			margin: 100px 0;
 		}
 	}
-	.front-content {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%,-50%);
-		color: black;
-		mix-blend-mode: difference;
-		text-transform: uppercase;
-		white-space: nowrap;
-		.glitch-title {
-			font-size: 7vw;
-			text-align: center;
-			letter-spacing: 0.1em;
-			padding-bottom: 10px;
-			cursor: pointer;
-			//text-shadow: -2px 2px 0 #fff, 2px 2px 0 #fff, 2px -2px 0 #fff, -2px -2px 0 #fff;
-			-webkit-text-stroke: 1px white;
-			margin-bottom: 10px;
-		}
-	}
-
-
-	.container {
-		position: absolute;
-		top: 100vh;
-		background: white;
-		padding: 80px;
-		right: 70px;
-		mix-blend-mode: screen;
-		width: 1100px;
-		.content {
-			float: right;
-		}
-		h1 {
-			font-size: 150px;
-		}
-	}
-
 }
 
-
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 0.4s;
+  transition: opacity 0.3s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
 
 @media(max-width: 900px) {
+	.home {
+		display: none;
+	}
 	.front {
-		.cursor-circle {
-			display: none;
+		.big-text {
+			font-size: 12vw;
 		}
-		.front-header {
-			.logo {
-				height: 130px;
-				bottom: -5px;
-			}
+		.black-col {
+			//display: none;
+			width: 50%;
 		}
-		.front-content {
-			white-space: break-spaces!important;
-			.glitch-title {
-				font-size: 12vw;
-			}
+		.content {
+			left: 0;
+			top: 70vw;
+			width: 100%;
+			padding: 0 10%;
 		}
-	}	
+	}
 }
 </style>
