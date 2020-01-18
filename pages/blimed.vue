@@ -63,7 +63,7 @@ export default {
 			contentReady: false,
 			content: 'Ikke langt igjen nå før du er påmeldt, vi gleder oss til å møte deg på Glitcher!',
 			products: [
-				{ name: '1 dag', price: 149 },
+				{ name: '1 dag', price: 149, sku: 'sku_GZZmFrP4LOd1av' },
 				{ name: 'Helg', price: 299, sku: 'sku_GHCoyq9zL5EOPn' }
 			],
 			userAge: '',
