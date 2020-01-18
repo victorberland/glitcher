@@ -13,7 +13,7 @@
 				<div class="content" v-html="content">
 				</div>
 				<form>
-					<label>Hvor gammel er du (eller fyller i 2020)?</label><br/>
+					<label>Hvor gammel blir du i 2020?</label><br/>
 					<input type="number" v-model="userAge" placeholder="Alder"/>
 					<br/>
 					<br/>
@@ -27,7 +27,23 @@
 				<br/>
 				<p class="errortext">{{ inputError }}</p>
 				<br/>
-				<button type="button" @click="goCheckout" v-show="overAge" class="clickable">Fortsett</button>
+
+				<div v-show="overAge">
+					<p>Velg billett</p>
+					<div class="cards">
+						<ul>
+							<li v-for="product in products" @click="goCheckout(product.sku)">
+								<table style="width:100%">
+									<tr>
+										<td>{{ product.name }}</td>
+										<td class="price">{{ product.price }},-</td>
+									</tr>
+								</table>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- <button type="button" @click="goCheckout" v&#45;show="overAge" class="clickable">Fortsett</button> -->
 			</div>
 		</transition>
   </div>
@@ -45,8 +61,11 @@ export default {
 		return {
 			blackColReady: false,
 			contentReady: false,
-			// content: 'Sett av datoen, vi ser fram til å se deg på Glitcher LAN! Men før du melder deg på, ønsker vi at du leser <a href="/reglement" class="clickable">reglementet for Glitcher</a>',
-			content: 'Ikke langt igjen nå før du er påmeldt, vi gleder oss til å møte deg på Glitcher! Men før du melder deg på kan det være greit å lese mer om <a href="/glitcher" class="clickable">om Glitcher</a> dersom du ikke allerede har gjort dette.',
+			content: 'Ikke langt igjen nå før du er påmeldt, vi gleder oss til å møte deg på Glitcher!',
+			products: [
+				{ name: '1 dag', price: 149 },
+				{ name: 'Helg', price: 299, sku: 'sku_GHCoyq9zL5EOPn' }
+			],
 			userAge: '',
 			numberParticipants: 1,
 			email: '',
@@ -56,7 +75,6 @@ export default {
 	computed: {
 		overAge() {
 			var ageLimit = 13
-
 			if (this.userAge < ageLimit && this.userAge > 1) {
 				this.inputError = 'Beklager, Glitcher er kun for gamers over 13 år.'
 				return false
@@ -75,7 +93,7 @@ export default {
 		}
 	},
 	methods: {
-		goCheckout() {
+		goCheckout(sku) {
 			var that = this
 			if (this.overAge) {
 				var stripe = Stripe('pk_live_Kax5nieVSihzoQw18OLjbqyD00o5aqSi01');
@@ -83,7 +101,7 @@ export default {
 				stripe.redirectToCheckout({
 					items: [
 						// Replace with the ID of your SKU
-						{sku: 'sku_GHCoyq9zL5EOPn', quantity: Number(this.numberParticipants)}
+						{sku: sku, quantity: Number(this.numberParticipants)}
 					],
 					successUrl: 'https://glitcher.space/gg',
 					cancelUrl: 'https://glitcher.space',
@@ -147,6 +165,30 @@ $purple2: #8F4C92;
 			a {
 				text-decoration: none;
 				color: purple;
+			}
+		}
+	}
+	.cards {
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			li {
+				padding: 20px 40px;
+				//background: purple;
+				margin: 20px 0;
+				border: 2px double white;
+				cursor: pointer;
+				transform: translateX(0);
+				transition: 0.2s transform ease;
+				font-size: 20px;
+				.price {
+					opacity: 0.8;
+					text-align: right;
+				}
+				&:hover {
+					transform: translateX(5px);
+				}
 			}
 		}
 	}
