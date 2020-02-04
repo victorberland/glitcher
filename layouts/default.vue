@@ -13,8 +13,8 @@ import { Cursor } from '~/assets/modules/cursor.js'
    		Back
   	},
 	 mounted() {
-		 const cursor = new Cursor()
-		 cursor.initCursor()
+		 //const cursor = new Cursor()
+		 //cursor.initCursor()
 	 }
  }
 </script>
