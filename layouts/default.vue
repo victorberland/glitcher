@@ -7,7 +7,7 @@
 
 <script>
 import Back from '~/components/Back.vue'
-import { Cursor } from '~/assets/modules/cursor.js'
+// import { Cursor } from '~/assets/modules/cursor.js'
  export default {
 		components: {
    		Back

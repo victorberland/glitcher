@@ -11,7 +11,7 @@
 					<img src="/logo-2.svg"/>
 				</nuxt-link>
 				<div class="header-right">
-					<p>14 - 16 februar, Kopervik VGS</p>
+					<p id="headerinfo">14 - 16 februar, Kopervik VGS</p>
 					<nuxt-link to="/blimed" class="join clickable" v-show="contentReady">Bli med.</nuxt-link>
 				</div>
 			</header>
@@ -171,6 +171,17 @@ export default {
 			height: auto;
 			margin: 100px 0;
 		}
+		ul {
+			margin-top: 20px;
+			li {
+				padding: 10px 0;
+			}
+		}
+		a {
+				color: white;
+				border-bottom: 3px solid purple;
+				text-decoration: none;
+			}
 	}
 }
 
@@ -186,6 +197,9 @@ export default {
 		display: none;
 	}
 	.front {
+		#headerinfo {
+			display: none;
+		}
 		.big-text {
 			font-size: 12vw;
 		}
@@ -197,7 +211,7 @@ export default {
 			left: 0;
 			top: 70vw;
 			width: 100%;
-			padding: 0 10%;
+			padding: 0 10%;	
 		}
 	}
 }
