@@ -1,5 +1,10 @@
 <template>
   <div class="container">
+		<div class="mobil">
+			<h3>Beklager, men plassvelgeren fungerer ikke på mobil og mindre enheter.</h3>
+		</div>
+
+
 		<Auth v-show="authShow" @submit="auth"/>
 		<Success v-show="successShow" type="seat"/>
 
@@ -256,6 +261,22 @@ export default {
 	}
 }
 
+.mobil {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background: black;
+	z-index: 20;
+	display: none;
+}
+
+@media(max-width: 1500px) {
+	.mobil {
+		display: block;
+	}
+}
 @media(max-width: 800px) {
 	.success {
 		h1 {
