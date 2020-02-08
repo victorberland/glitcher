@@ -20,7 +20,7 @@
 			<div class="tables">
 				<div v-for="(col, colIndex) in tables" class="col">
 					<div v-for="(row, rowIndex) in col" class="row">
-						<div class="seat" :class="{ busy: row == 1 }" @click="selectTable(colIndex, rowIndex)"></div>
+						<div class="seat" :class="{ busy: row == 1 }" @click="selectTable(colIndex, rowIndex, row)"></div>
 					</div>
 				</div>
 			</div>
@@ -74,13 +74,19 @@ export default {
 			this.email = email
 			this.getData()
 		},
-		selectTable(col, row) {
-			if (this.selectedTables.length < this.quantity) {
-				var selection = String(col) +','+ String(row)
-				this.selectedTables.push(selection)
-				this.tables[col][row] = 1
-			} else {
-				alert('Din billett gjelder kun for '+ this.quantity +' plass(er)')
+		selectTable(col, row, busy) {
+			if (busy != 1) {
+
+				if (this.selectedTables.length < this.quantity) {
+					var selection = String(col) +','+ String(row)
+					this.selectedTables.push(selection)
+					this.tables[col][row] = 1
+				} else {
+					alert('Din billett gjelder kun for '+ this.quantity +' plass(er)')
+				}
+
+			} else {
+				alert('Denne plassen er opptatt')
 			}
 		},
 		reserve() {
