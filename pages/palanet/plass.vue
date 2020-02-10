@@ -272,7 +272,7 @@ export default {
 	display: none;
 }
 
-@media(max-width: 1500px) {
+@media(max-width: 1000px) {
 	.mobil {
 		display: block;
 	}
