@@ -17,6 +17,7 @@
 
 		<div class="info">
 			<a href="/plassoversikt.pdf">For mer detaljert plassoversikt, se vår illustrasjon for dette</a>
+			<p>Trykk på setet for å se hvem som har tatt det.</p>
 		</div>
 
 		<div class="table-container">
@@ -150,6 +151,9 @@ export default {
 			color: white;
 			text-decoration: none;
 			border-bottom: 3px solid white;
+		}
+		p {
+			margin-top: 20px;
 		}
 	}
 	.bar {
