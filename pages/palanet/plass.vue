@@ -25,7 +25,7 @@
 			<div class="tables">
 				<div v-for="(col, colIndex) in tables" class="col">
 					<div v-for="(row, rowIndex) in col" class="row">
-						<div class="seat" :class="{ busy: row == 1 }" @click="selectTable(colIndex, rowIndex, row)"></div>
+						<div class="seat" :class="{ busy: row }" @click="selectTable(colIndex, rowIndex, row)"></div>
 					</div>
 				</div>
 			</div>
@@ -80,7 +80,7 @@ export default {
 			this.getData()
 		},
 		selectTable(col, row, busy) {
-			if (busy != 1) {
+			if (busy == 0 || busy == null) {
 
 				if (this.selectedTables.length < this.quantity) {
 					var selection = String(col) +','+ String(row)
@@ -91,7 +91,7 @@ export default {
 				}
 
 			} else {
-				alert('Denne plassen er opptatt')
+				alert('Denne plassen er tatt av '+ busy)
 			}
 		},
 		reserve() {
