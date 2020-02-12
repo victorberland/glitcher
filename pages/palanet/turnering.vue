@@ -8,9 +8,10 @@
 				<form>
 					<ul>
 						<li v-for="tournament in tournaments">
-							<input type="radio" :value="tournament.name" v-model="selection.tournament"/>{{ tournament.name }}
+							<input type="radio" :value="tournament" v-model="selection.tournament"/>{{ tournament.name }}
 						</li>
 					</ul>
+					<input type="number" v-model="selection.participants" v-if="selection.tournament.group" placeholder="Antall på lag">
 				</form>
 			</div>
 		</div>
@@ -26,8 +27,10 @@ export default {
 				participants: null
 			},
 			tournaments: [
-				{ name: 'Fortnite' },
-				{ name: 'League of Legends' }
+				{ name: 'Super Smash Ultimate', group: false },
+				{ name: 'Fortnite', group: true },
+				{ name: 'CS:GO', group: true },
+				{ name: 'League of Legends', group: true},
 			]
 		}
 	},
@@ -64,6 +67,7 @@ export default {
 					margin: 30px 0;
 					input {
 						height: 20px;
+						width: 20px;
 					}
 				}
 			}

@@ -10,7 +10,8 @@
 		</header>
 
 		<main class="main">
-			<h1 class="headline">{{ numberParticipants }} påmeldte</h1>
+			<h1 class="headline">{{ sum }} påmeldte</h1>
+			<!-- <h1 class="headline">{{ numberParticipants }} påmeldte</h1> -->
 			<p @click="stripeShow =! stripeShow">Vis/skjul Stripe ID</p>
 			<ul>
 				<li v-for="participant in participants" class="participant">
@@ -36,34 +37,48 @@ export default {
 	data() {
 		return {
 			participants: [],
+			count: [],
+			sum: null,
 			stripeShow: false,
 			login: true,
+			password: null
 		}
 	},
 	mounted() {	
 	},
 	methods: {
+		countParticipants() {
+
+			for (var i = 0; i < this.participants.length; i++) {
+				this.count[i] = Number(this.participants[i].quantity)
+			}
+			// console.log(this.count)
+			this.sum = this.count.reduce((a, b) => a + b, 0)
+		},
 		logIn() {
-			var that = this
+			// var that = this
 
 			axios({
 				method: 'post',
 				url: 'https://api.glitcher.space/participants',
 				data: {
-					password: that.password
+					password: this.password
 				},
 				headers: {
 					'Content-Type': 'text/plain;charset=utf-8'
 				}
 			})
-			.then(function (response) {
+			.then((response) => {
+			// .then(function (response) {
 				console.log(response);
-				that.participants = response.data
-				if (that.participants[0].email) {
-					that.login = false
+				this.participants = response.data
+				if (this.participants[0].email) {
+					this.login = false
+					this.countParticipants()
 				}
 			})
-			.catch(function (error) {
+			.catch((error) => {
+			// .catch(function (error) {
 				console.log(error);
 			})
 		}
