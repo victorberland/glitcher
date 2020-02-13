@@ -4,7 +4,7 @@
 			<h1>Flotte greier!</h1>
 			<div class="text">
 				<p v-if="type == 'seat'">Du har nå reservert plass! Ønsker du å endre plassen, så bare går du tilbake til der du var og reserverer på nytt en annen plass. Vi snakkes :-)</p>
-				<p v-if="type == 'tournament'">Du er nå påmeldt turneringene!</p>
+				<p v-if="type == 'tournament'">Du er nå påmeldt turneringen! Ønsker du å bli med på flere turneringer, så bare last denne sida inn på nytt og gjør samme prosess på nytt.</p>
 				<nuxt-link to="/">Til forsida</nuxt-link>
 			</div>
 		</div>
