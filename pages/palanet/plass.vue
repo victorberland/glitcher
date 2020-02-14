@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <!--<div class="container">
 		<div class="mobil">
 			<h3>Beklager, men plassvelgeren fungerer ikke på mobil og mindre enheter.</h3>
 		</div>
@@ -31,7 +31,7 @@
 				</div>
 			</div>
 		</div>
-  </div>
+	</div>-->
 </template>
 
 <script>
