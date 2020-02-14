@@ -8,7 +8,7 @@
 		</transition>
 
 		<transition name="fade">
-			<div class="container" v-show="contentReady">
+			<!--<div class="container" v-show="contentReady">
 				<h1>14 - 16 februar</h1>
 				<div class="content" v-html="content">
 				</div>
@@ -43,8 +43,9 @@
 						</ul>
 					</div>
 				</div>
-				<!-- <button type="button" @click="goCheckout" v&#45;show="overAge" class="clickable">Fortsett</button> -->
-			</div>
+				<button type="button" @click="goCheckout" v&#45;show="overAge" class="clickable">Fortsett</button>
+			</div>-->
+      <h1>Påmeldinga er stengt</h1
 		</transition>
   </div>
 </template>
